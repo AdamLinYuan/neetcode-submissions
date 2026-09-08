@@ -1,0 +1,22 @@
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        currMax = -10001
+
+        if len(nums) < k:
+            return res
+
+        if k == 1:
+            return nums
+
+        currArr = nums[:k]
+        print(currArr)
+        currMax = max(currMax, max(currArr))
+        res.append(currMax)
+        for i in range(k, len(nums)):
+            currArr.append(nums[i])
+            currArr.pop(0)
+            print(currArr)
+            currMax = max(currArr)
+            res.append(currMax)
+        return res
